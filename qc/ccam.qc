@@ -2,11 +2,8 @@ void () CCam;
 
 void () CCamChasePlayer =
 {
-   local vector tempangles;
-   local float counter;
-   counter = 0;
    self.v_angle_x = 0;
-   self.punchangle_x = 90;
+//   self.punchangle_x = 90;
    stuffcmd(self, "-mlook\n");
    stuffcmd(self, "centerview\n");
    stuffcmd(self, "cl_rollangle 0\n");
@@ -15,6 +12,12 @@ void () CCamChasePlayer =
    setorigin (self.trigger_field,trace_endpos);
    WriteByte (MSG_ONE,5);
    WriteEntity (MSG_ONE,self.trigger_field);
+   makevectors (self.angles);
+   msg_entity = self;
+   WriteByte (MSG_ONE, 10);
+   WriteAngle (MSG_ONE, 90);
+   WriteAngle (MSG_ONE, v_up_y);
+   WriteAngle (MSG_ONE, 0);
    self.weaponmodel = "";
 };
 
